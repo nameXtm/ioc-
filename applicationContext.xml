@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans>
+    <bean id="fruitDAO" class="src/main/java/fruitDAO.java"/>
+
+
+    <bean id="fruitServlet" class="src/main/java/fruitServlet.java">
+        <property name="fruitDAO" ref="fruitDAO"/><!--ref取决于bean id="fruitDAO"  name取决于 class中的fruitDAO.java-->
+    </bean>
+    <!--这个bean标签的作用是 将来servlet path中涉及的名字对应fruit，那么就要DruidRuntimeException这个类来处理 -->
+    <bean id="fruit" class="com.alibaba.druid.FruitController">
+        <property name="fruitServlet" ref="fruitServlet"/><!--ref取决于bean id="fruitServlet"  name取决于 class中的fruitServlet.java-->
+    </bean>
+</beans>
